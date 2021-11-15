@@ -1,6 +1,7 @@
 package com.starlab.msa.gutInfo.controller;
 
 
+import com.starlab.msa.gutInfo.domain.BacteriaInfo;
 import com.starlab.msa.gutInfo.domain.MicrobiomeData;
 import com.starlab.msa.gutInfo.service.MicrobiomeDataService;
 import io.swagger.annotations.Api;
@@ -26,17 +27,35 @@ public class MicrobiomeDataController {
         this.microbiomeDataService = microbiomeDataService;
     }
 
-    @ApiOperation(value = "특정 사용자의 최근 마이크로바이옴 검사 정보를 반환합니다.")
-    @GetMapping("/recent-scan/{user-id}")
-    public MicrobiomeData getMicrobiomeData(
-        @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
-        @PathVariable("user-id") Long id
+//    @ApiOperation(value = "특정 사용자의 최근 마이크로바이옴 검사 정보를 반환합니다.")
+//    @GetMapping("/recent-scan/{user-id}")
+//    public List<BacteriaInfo> getMicrobiomeData(
+//        @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
+//        @PathVariable("user-id") Long id
+//    ) {
+//        return microbiomeDataService.getRecentScanData(id);
+//    }
+//
+//    @ApiOperation(value = "특정 사용자가 검사한 모든 마이크로바이옴 박테리아 들을 반환합니다.")
+//    @GetMapping("/alltest/{user-id}")
+//    public List<List<BacteriaInfo>> getAllBacteriaInfoData(
+//            @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
+//            @PathVariable("user-id") Long id
+//    ) {
+//        return microbiomeDataService.getAllBacteriaInfoData(id);
+//    }
+
+    @ApiOperation(value = "특정 사용자의 최근 마이크로바이옴 검사 식별 정보를 반환합니다.")
+    @GetMapping("/microbiome/{user-id}")
+    public MicrobiomeData getRecentMicrobiomeData(
+            @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
+            @PathVariable("user-id") Long id
     ) {
-        return microbiomeDataService.getRecentScanData(id);
+        return microbiomeDataService.getRecentMicrobiomeData(id);
     }
 
-    @ApiOperation(value = "특정 사용자의 모든 마이크로바이옴 검사 정보를 반환합니다.")
-    @GetMapping("/alltest/{user-id}")
+    @ApiOperation(value = "특정 사용자의 모든 마이크로바이옴 검사 식별 정보를 반환합니다.")
+    @GetMapping("/microbiome/all/{user-id}")
     public List<MicrobiomeData> getAllMicrobiomeData(
             @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
             @PathVariable("user-id") Long id

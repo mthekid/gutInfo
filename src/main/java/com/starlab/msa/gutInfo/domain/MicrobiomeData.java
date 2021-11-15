@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 @Entity
 @Table(name = "microbiome")
 @ApiModel(value = "마이크로바이옴 검사 정보", description = "사용자 식별번호, 검사 날짜, 마이크로바이옴 데이터 정보")
-public class MicrobiomeData {
+public class MicrobiomeData implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +30,7 @@ public class MicrobiomeData {
     private Long id;
 
     // 사용자 마이크로서비스에서 받아와야 한다.
-    @Column(nullable = false)
+    @Column(name = "userId", nullable = false)
     @ApiModelProperty(value = "사용자의 식별번호", example = "1", required = true)
     private Long userId;
 
@@ -40,8 +41,8 @@ public class MicrobiomeData {
     // 해당 자료들은 microBiome 데이터들로 처리되어야 한다.
     @Column(nullable = false)
     @ApiModelProperty(value = "", required = true)
-    @OneToMany
-    private List<BactriaInfo> bactriaInfo = new ArrayList<>();
+    @OneToMany(mappedBy = "microbiomeData", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BacteriaInfo> bacteriaInfos;
 
     public MicrobiomeData() {}
 }
