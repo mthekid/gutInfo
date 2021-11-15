@@ -1,25 +1,29 @@
 package com.starlab.msa.gutInfo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigInteger;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "bacteria_info")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @ApiModel(value = "각 장내 세균에 대한 정보", description = "해당 Entity의 식별번호, 회사 고유 코드, 박테리아 타입, 박테리아 이름, 외래키")
-public class BacteriaInfo implements Serializable {
+public class BacteriaInfo {
 
     @Id
     @GeneratedValue
@@ -45,7 +49,9 @@ public class BacteriaInfo implements Serializable {
 
     public BacteriaInfo() {}
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(targetEntity = MicrobiomeData.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "microbiome_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ToString.Exclude
     private MicrobiomeData microbiomeData;
 }

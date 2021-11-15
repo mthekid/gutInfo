@@ -1,6 +1,9 @@
 package com.starlab.msa.gutInfo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
@@ -9,19 +12,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @Entity
 @Table(name = "microbiome")
 @ApiModel(value = "마이크로바이옴 검사 정보", description = "사용자 식별번호, 검사 날짜, 마이크로바이옴 데이터 정보")
-public class MicrobiomeData implements Serializable {
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+public class MicrobiomeData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,12 @@ public class MicrobiomeData implements Serializable {
     @ApiModelProperty(value = "마이크로바이옴 검사 날짜", required = true)
     private Date createDate;
 
-    // 해당 자료들은 microBiome 데이터들로 처리되어야 한다.
     @Column(nullable = false)
     @ApiModelProperty(value = "", required = true)
-    @OneToMany(mappedBy = "microbiomeData", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BacteriaInfo> bacteriaInfos;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "microbiomeData", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ToString.Exclude
+    private Set<BacteriaInfo> bacteriaInfos = new HashSet<>();
 
     public MicrobiomeData() {}
 }

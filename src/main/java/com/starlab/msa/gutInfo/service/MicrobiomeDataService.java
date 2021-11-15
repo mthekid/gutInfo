@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface MicrobiomeDataService {
 
-//    List<BacteriaInfo> getRecentScanData(Long userId);
-//    List<List<BacteriaInfo>> getAllBacteriaInfoData(Long userId);
-
     MicrobiomeData getRecentMicrobiomeData(Long userId);
     List<MicrobiomeData> getAllMicrobiomeData(Long userId);
 }
