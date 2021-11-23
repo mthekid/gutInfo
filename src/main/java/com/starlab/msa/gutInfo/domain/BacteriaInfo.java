@@ -4,6 +4,7 @@ package com.starlab.msa.gutInfo.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.starlab.msa.gutInfo.domain.converter.BacteriaConverter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
@@ -16,6 +17,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.math.BigInteger;
 
+
+/**
+ * 박테리아에 대한 정보를 보관합니다.
+ * 식별번호, 박테리아 타입, 박테리아 양, 박테리아 학명, 박테리아 학명코드을 가집니다.
+ */
 @Getter
 @Setter
 @ToString
@@ -27,25 +33,26 @@ public class BacteriaInfo {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "ID")
     @ApiModelProperty(value = "박테리아 데이터 식별번호", example = "1", required = true)
     private Long id;
 
-    @Column(name = "companyType", nullable = false)
-    @ApiModelProperty(value = "NCS 검사 회사", example = "CODE1", required = true)
-    private String companyType;
+    @Column(name = "TYPE", nullable = false)
+    @ApiModelProperty(value = "박테리아 타입", example = "INTER", required = true)
+    @Convert(converter = BacteriaConverter.class)
+    private BacteriaType type;
 
-    @Column(name = "type", nullable = false)
-    @ApiModelProperty(value = "박테리아 타입", example = "BAD", required = true)
-    private BacteriaType bacteriaType;
+    @Column(name = "AMOUNT", nullable = false)
+    @ApiModelProperty(value = "박테리아 균 수(천만단위)", example = "18846518", required = true)
+    private BigInteger amounts;
 
-    @Column(name = "bacteriaNum", nullable = false)
-    @ApiModelProperty(value = "박테리아 균 수", example = "18846518", required = true)
-    private BigInteger bacteriaNum;
+    @Column(name = "NAME", nullable = false)
+    @ApiModelProperty(value = "박테리아 학명", example = "Lacto-BASILAS", required = true)
+    private String name;
 
-    @Column(name = "bacteriaName", nullable = false)
-    @ApiModelProperty(value = "박테리아 학명", example = "Lacto", required = true)
-    private String bacteiaName;
+    @Column(name = "CODE", nullable = false)
+    @ApiModelProperty(value = "박테리아학명 코드", example = "LC1", required = true)
+    private String code;
 
     public BacteriaInfo() {}
 
