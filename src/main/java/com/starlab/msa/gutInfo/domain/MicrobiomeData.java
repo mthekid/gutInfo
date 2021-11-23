@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.*;
@@ -17,6 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
+@Builder
 @Entity
 @Table(name = "microbiome")
 @ApiModel(value = "마이크로바이옴 검사 정보", description = "사용자 식별번호, 검사 날짜, 마이크로바이옴 데이터 정보")

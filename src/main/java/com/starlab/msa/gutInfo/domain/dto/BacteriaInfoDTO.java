@@ -1,16 +1,9 @@
-package com.starlab.msa.gutInfo.dto;
+package com.starlab.msa.gutInfo.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.starlab.msa.gutInfo.domain.BacteriaType;
-import com.starlab.msa.gutInfo.domain.MicrobiomeData;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
 import java.math.BigInteger;
 
 @Getter

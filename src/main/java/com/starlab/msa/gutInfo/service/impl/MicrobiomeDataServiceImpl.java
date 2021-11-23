@@ -1,18 +1,16 @@
 package com.starlab.msa.gutInfo.service.impl;
 
-import com.starlab.msa.gutInfo.domain.BacteriaInfo;
 import com.starlab.msa.gutInfo.domain.MicrobiomeData;
-import com.starlab.msa.gutInfo.dto.MicrobiomeDataDTO;
-//import com.starlab.msa.gutInfo.repo.BacteriaInfoRepository;
+import com.starlab.msa.gutInfo.domain.dto.MicrobiomeDataDTO;
 import com.starlab.msa.gutInfo.repo.MicrobiomeDataRepository;
-//import com.starlab.msa.gutInfo.service.BacteriaInfoService;
 import com.starlab.msa.gutInfo.service.MicrobiomeDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.metal.MetalIconFactory;
 import java.util.List;
-import java.util.Set;
+/**
+ * 사용자의 마이크로바이옴 데이터를 가져옵니다.
+ */
 
 @Service
 public class MicrobiomeDataServiceImpl implements MicrobiomeDataService {
@@ -32,17 +30,12 @@ public class MicrobiomeDataServiceImpl implements MicrobiomeDataService {
             return m2.getCreateDate().compareTo(m1.getCreateDate());
         });
 
+
         return microbiomeDataList.get(0);
     }
 
     @Override
     public List<MicrobiomeData> getAllMicrobiomeData(Long userId) {
-        List<MicrobiomeData> microbiomeDataList = microbiomeDataRepository.findAllByUserId(userId);
-
-//        for(MicrobiomeData m : microbiomeDataList) {
-//            System.out.println(m.getBacteriaInfos());
-//        }
-
-        return microbiomeDataList;
+        return microbiomeDataRepository.findAllByUserId(userId);
     }
 }
