@@ -1,7 +1,6 @@
 package com.starlab.msa.gutInfo.domain.dto;
 
 import com.starlab.msa.gutInfo.domain.BacteriaInfo;
-import com.starlab.msa.gutInfo.domain.MicrobiomeData;
 import lombok.*;
 
 import java.util.*;

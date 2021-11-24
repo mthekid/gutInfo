@@ -44,7 +44,7 @@ public class BacteriaInfo {
 
     @Column(name = "AMOUNT", nullable = false)
     @ApiModelProperty(value = "박테리아 균 수(천만단위)", example = "18846518", required = true)
-    private BigInteger amounts;
+    private int amounts;
 
     @Column(name = "NAME", nullable = false)
     @ApiModelProperty(value = "박테리아 학명", example = "Lacto-BASILAS", required = true)
@@ -55,6 +55,14 @@ public class BacteriaInfo {
     private String code;
 
     public BacteriaInfo() {}
+
+    public BacteriaInfo(Long id, BacteriaType type, int amounts, String name, String code) {
+        this.id = id;
+        this.type = type;
+        this.amounts = amounts;
+        this.name = name;
+        this.code = code;
+    }
 
     @ManyToOne(targetEntity = MicrobiomeData.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "microbiome_id", nullable = false)

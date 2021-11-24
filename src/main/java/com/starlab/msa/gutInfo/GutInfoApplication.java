@@ -1,7 +1,13 @@
 package com.starlab.msa.gutInfo;
 
 
+import com.starlab.msa.gutInfo.domain.BacteriaInfo;
+import com.starlab.msa.gutInfo.domain.BacteriaType;
+import com.starlab.msa.gutInfo.domain.MicrobiomeData;
+import com.starlab.msa.gutInfo.repo.MicrobiomeDataRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,11 +21,19 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.math.BigInteger;
+import java.sql.Date;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableSwagger2
+@Slf4j
 public class GutInfoApplication {
+
+	private MicrobiomeDataRepository microbiomeDataRepository;
 
 	//swagger part
 	@Value("${api.common.version}")           String apiVersion;
@@ -56,5 +70,4 @@ public class GutInfoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GutInfoApplication.class, args);
 	}
-
 }

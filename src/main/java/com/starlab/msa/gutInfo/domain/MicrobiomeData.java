@@ -9,8 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -32,10 +34,9 @@ public class MicrobiomeData {
     @ApiModelProperty(value = "사용자의 식별번호", example = "1", required = true)
     private Long userId;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATE_DATE", nullable = false)
     @ApiModelProperty(value = "마이크로바이옴 검사 날짜", required = true)
-    private Date createDate;
+    private LocalDate createDate;
 
     @Column(name = "COMPANYCODE", nullable = false)
     @ApiModelProperty(value = "NCS 검사 회사", example = "CB", required = true)
@@ -46,11 +47,10 @@ public class MicrobiomeData {
     private String companyName;
 
     @Column(nullable = false)
-    @ApiModelProperty(value = "", required = true)
     @JsonManagedReference
     @OneToMany(mappedBy = "microbiomeData", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
-    private Set<BacteriaInfo> bacteriaInfos = new HashSet<>();
+    private final Set<BacteriaInfo> bacteriaInfos = new HashSet<>();
 
     public MicrobiomeData() {}
 }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface MicrobiomeDataRepository extends JpaRepository<MicrobiomeData, Long> {
 
     List<MicrobiomeData> findAllByUserId(Long userId);
+    MicrobiomeData save(MicrobiomeData microbiomeData);
 }

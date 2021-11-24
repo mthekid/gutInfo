@@ -28,20 +28,20 @@ public class MicrobiomeDataController {
     }
 
     @ApiOperation(value = "특정 사용자의 최근 마이크로바이옴 검사 식별 정보를 반환합니다.")
-    @GetMapping("/microbiome/{user-id}")
+    @GetMapping("/microbiome-data/{user-id}")
     public MicrobiomeData getRecentMicrobiomeData(
             @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
-            @PathVariable("user-id") Long id
-    ) {
+            @PathVariable("user-id") Long id)
+    {
         return microbiomeDataService.getRecentMicrobiomeData(id);
     }
 
     @ApiOperation(value = "특정 사용자의 모든 마이크로바이옴 검사 식별 정보를 반환합니다.")
-    @GetMapping("/microbiome/all/{user-id}")
+    @GetMapping("/microbiome-datas/{user-id}")
     public List<MicrobiomeData> getAllMicrobiomeData(
             @ApiParam(value = "사용자 식별자", type = "Long", example = "1", required = true)
-            @PathVariable("user-id") Long id
-    ) {
+            @PathVariable("user-id") Long id)
+    {
         return microbiomeDataService.getAllMicrobiomeData(id);
     }
 }
