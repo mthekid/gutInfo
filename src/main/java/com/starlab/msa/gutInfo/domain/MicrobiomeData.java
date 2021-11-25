@@ -50,7 +50,8 @@ public class MicrobiomeData {
     @JsonManagedReference
     @OneToMany(mappedBy = "microbiomeData", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ToString.Exclude
-    private final Set<BacteriaInfo> bacteriaInfos = new HashSet<>();
+    private Set<BacteriaInfo> bacteriaInfos;
 
     public MicrobiomeData() {}
+
 }

@@ -1,7 +1,6 @@
 package com.starlab.msa.gutInfo.service.impl;
 
 import com.starlab.msa.gutInfo.domain.MicrobiomeData;
-import com.starlab.msa.gutInfo.domain.dto.MicrobiomeDataDTO;
 import com.starlab.msa.gutInfo.repo.MicrobiomeDataRepository;
 import com.starlab.msa.gutInfo.service.MicrobiomeDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,20 @@ public class MicrobiomeDataServiceImpl implements MicrobiomeDataService {
         this.microbiomeDataRepository = microbiomeDataRepository;
     }
 
+
+    /**
+     *
+     * @param userId 검사자의 식별번호
+     * @return 사용자의 최근 마이크로 검사 데이터를 반환한다. 불필요한 정보를 제거한 DTO로 반환한다.
+     */
     @Override
     public MicrobiomeData getRecentMicrobiomeData(Long userId) {
         List<MicrobiomeData> microbiomeDataList = microbiomeDataRepository.findAllByUserId(userId);
 
+
         microbiomeDataList.sort( (m1, m2) -> {
             return m2.getCreateDate().compareTo(m1.getCreateDate());
         });
-
 
         return microbiomeDataList.get(0);
     }

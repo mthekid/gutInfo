@@ -11,8 +11,6 @@ import java.util.*;
 @ToString
 public class MicrobiomeDataDTO {
     private Date createDate;
-    private String companyName;
-    private Set<BacteriaInfo> bacteriaInfos = new HashSet<>();
-
-
+    private String companyCode;
+    private Set<BacteriaInfo> bacteriaInfos;
 }

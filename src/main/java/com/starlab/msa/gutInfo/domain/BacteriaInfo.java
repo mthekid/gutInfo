@@ -54,6 +54,7 @@ public class BacteriaInfo {
     @ApiModelProperty(value = "박테리아학명 코드", example = "LC1", required = true)
     private String code;
 
+    // JSON/JPA를 위한 빈 생성자.
     public BacteriaInfo() {}
 
     public BacteriaInfo(Long id, BacteriaType type, int amounts, String name, String code) {
@@ -64,7 +65,7 @@ public class BacteriaInfo {
         this.code = code;
     }
 
-    @ManyToOne(targetEntity = MicrobiomeData.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = MicrobiomeData.class)
     @JoinColumn(name = "microbiome_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude
