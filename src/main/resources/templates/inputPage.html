@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>MicroBiome Form</title>
+</head>
+<body>
+<h1>Microbiome 입력 폼입니다.</h1>
+<form action="insertMicrobiomData" method="post">
+    <span>사용자식별_ID</span>
+    <input type="number" th:field="${MicrobiomeData.userId"> <br/>
+    <span>회사이름</span>
+    <input list="companys" name="companyList" th:field="${MicrobiomeData.companyName"> <br />
+        <datalist id="companys">
+            <option value="쎌바이오텍"></option>
+            <option value="천랩"></option>
+            <option value="고바이오랩"></option>
+        </datalist>
+
+
+
+</form>
+</body>
+</html>
