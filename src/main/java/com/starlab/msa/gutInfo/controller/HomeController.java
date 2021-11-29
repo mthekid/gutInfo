@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/ncs-kit")
+@RequestMapping("/microbiome")
 public class HomeController {
 
-    @GetMapping("/inputPage")
-    public String gotoSeachBoard() {
-        return "inputPage";
+    @GetMapping("/inputpage")
+    public String gotoInputPage() {
+        return "inputpage";
     }
 }
