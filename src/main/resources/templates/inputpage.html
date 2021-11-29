@@ -6,20 +6,34 @@
 </head>
 <body>
 <h1>Microbiome 입력 폼입니다.</h1>
-<form action="insertMicrobiomData" method="post">
-    <span>사용자식별_ID</span>
-    <input type="text" min="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
-    <span>회사이름</span>
-    <input list="companys" name="companyList" /> <br />
-        <datalist id="companys">
-            <option value="쎌바이오텍"></option>
-            <option value="천랩"></option>
-            <option value="고바이오랩"></option>
-        </datalist>
-    <input type="submit">
+<!-- action에는 일어날 경로를 지정해야 한다. -->
+<form action="/ncs-kit/insert/" method="post">
+    <span>검사 날짜 : </span>
+        <input type="date"> <br />
+    <span>사용자식별_ID : </span>
+        <input type="text" min="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
+    <span>회사이름 : </span>
+        <input list="companys" name="companyList" /> <br />
+            <datalist id="companys">
+                <option value="쎌바이오텍"></option>
+                <option value="천랩"></option>
+                <option value="고바이오랩"></option>
+            </datalist>
     <div id="bacteriaInfo">
-        <p>박테리아 정보를 입력합니다.</p>
+        <h2>박테리아 정보를 입력합니다.</h2>
+        <span>박테리아 타입 : </span>
+            <input list="types" name="bacteoriaTypes"/> <br/>
+            <datalist id="types">
+                <option label="유익균" value="HEALTH"></option>
+                <option label="유해균" value="HARMFUL"></option>
+                <option label="중간균" value="INTER"></option>
+            </datalist>
+        <span>박테리아 균수 : </span>
+            <input type="text" min="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
+        <span>박테리아 학명 : </span>
+            <input type="text"> <br/>
 
+        <input type="submit">
     </div>
 
 </form>

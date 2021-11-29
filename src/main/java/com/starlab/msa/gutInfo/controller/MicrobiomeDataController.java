@@ -3,15 +3,13 @@ package com.starlab.msa.gutInfo.controller;
 
 import com.starlab.msa.gutInfo.domain.BacteriaInfo;
 import com.starlab.msa.gutInfo.domain.MicrobiomeData;
+import com.starlab.msa.gutInfo.domain.dto.MicrobiomeDataDTO;
 import com.starlab.msa.gutInfo.service.MicrobiomeDataService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,5 +41,11 @@ public class MicrobiomeDataController {
             @PathVariable("user-id") Long id)
     {
         return microbiomeDataService.getAllMicrobiomeData(id);
+    }
+
+    @ApiOperation(value = "특정 사용자의 마이크로바이옴 검사 정보를 입력받습니다.")
+    @PostMapping("/insert")
+    public void insertMicrobiome(@RequestBody MicrobiomeDataDTO microbiomeData) {
+        System.out.println(microbiomeData);
     }
 }
