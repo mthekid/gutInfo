@@ -11,6 +11,6 @@ import java.util.*;
 @ToString
 public class MicrobiomeDataDTO {
     private Date createDate;
-    private String companyCode;
-    private Set<BacteriaInfo> bacteriaInfos;
+    private String companyName;
+    private Long userId;
 }

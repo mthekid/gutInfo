@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>MicroBiome Form</title>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<!--    <script src="inputpage-client.js"></script>-->
 </head>
 <body>
 <h1>Microbiome 입력 폼입니다.</h1>
+
 <!-- action에는 일어날 경로를 지정해야 한다. -->
-<form action="/ncs-kit/insert/" method="post">
+<form method="POST" th:action="@{/ncs-kit/insert}">
     <span>검사 날짜 : </span>
-        <input type="date"> <br />
+        <input type="date" name="inspect_date"> <br />
     <span>사용자식별_ID : </span>
-        <input type="text" min="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
+        <input type="text"  min="0" name="user_id" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
     <span>회사이름 : </span>
-        <input list="companys" name="companyList" /> <br />
+        <input list="companys" name="company_name" /> <br />
             <datalist id="companys">
                 <option value="쎌바이오텍"></option>
                 <option value="천랩"></option>
                 <option value="고바이오랩"></option>
             </datalist>
-    <div id="bacteriaInfo">
+    <div class="bacteria_info">
         <h2>박테리아 정보를 입력합니다.</h2>
         <span>박테리아 타입 : </span>
-            <input list="types" name="bacteoriaTypes"/> <br/>
+            <input list="types" name="bacteria_type"/> <br/>
             <datalist id="types">
                 <option label="유익균" value="HEALTH"></option>
                 <option label="유해균" value="HARMFUL"></option>
                 <option label="중간균" value="INTER"></option>
             </datalist>
         <span>박테리아 균수 : </span>
-            <input type="text" min="0" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
+            <input type="text" min="0" name="bacteria_amount" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/> <br/>
         <span>박테리아 학명 : </span>
-            <input type="text"> <br/>
+            <input type="text" name="bacteria_name"> <br/>
+        <a class="extra-fields-bacteria-info" href="#">박테리아 정보 추가</a>
+
+        <div class="bacteria_info_dynamic"></div>
 
         <input type="submit">
     </div>
